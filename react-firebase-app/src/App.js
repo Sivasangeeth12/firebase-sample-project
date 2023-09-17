@@ -4,35 +4,36 @@ import  {Auth} from './components/auth'
 import {db} from './config/firebase'
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {RealtimeData} from './realtimeData/index'
 function App() {
 
-  const [user, setUser] = useState([]);
-  const usersCollectionList = collection(db,"users");
+  // const [user, setUser] = useState([]);
+  // const usersCollectionList = collection(db,"users");
 
-  useEffect(() =>{
-    const getUserList = async () => {
-      try{
-      const data = await getDocs(usersCollectionList)
+  // useEffect(() =>{
+  //   const getUserList = async () => {
+  //     try{
+  //     const data = await getDocs(usersCollectionList)
       
-      const filteredUser = data.docs.map((doc) =>({
-        ...doc.data(),
-        id:doc.id}));
+  //     const filteredUser = data.docs.map((doc) =>({
+  //       ...doc.data(),
+  //       id:doc.id}));
 
-      setUser(filteredUser); 
-      }
-      catch(e){
-        console.error(e);
-      }
-    };
-    getUserList();
-  },[])
+  //     setUser(filteredUser); 
+  //     }
+  //     catch(e){
+  //       console.error(e);
+  //     }
+  //   };
+  //   getUserList();
+  // },[])
   
 
 
   return (
     <div className="App">
-      <Auth/>
+      {/* <Auth/>
       <div>
         {user.map((user1) =>(
           <div>
@@ -40,7 +41,8 @@ function App() {
             <h2>{user1.name}</h2>
           </div>
         ))}
-      </div>
+      </div> */}
+      <RealtimeData/>
     </div>
   );
 }
